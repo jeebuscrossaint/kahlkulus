@@ -5,7 +5,9 @@
 
 ## Building
 
-yet to do anything yet
+***Dependencies***
+npm install mathjs
+npm install readline-sync
 
 ## Docs
 
