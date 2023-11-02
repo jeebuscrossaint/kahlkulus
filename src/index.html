@@ -1,11 +1,36 @@
 <!DOCTYPE html>
 <html>
-    <script>main.js</script>
 <head>
-    <title>kahlkulus</title>
+    <title>Derivative Calculator</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.7.0/math.min.js"></script>
 </head>
 <body>
-    <h1>Kahlulus is a simple tool that calculates derivatives of functions.</h1>
-    <p>Please don't go crazy and spam issues on the repo or something, this is my first JS project.</p>
+    <h1>Derivative Calculator</h1>
+    <p>Enter a mathematical expression and click "Calculate" to find its derivative.</p>
+
+    <input type="text" id="expression" placeholder="Enter a mathematical expression">
+    <button id="calculateButton">Calculate</button>
+
+    <p>Derivative: <span id="result"></span></p>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const expressionInput = document.getElementById("expression");
+            const resultElement = document.getElementById("result");
+            const calculateButton = document.getElementById("calculateButton");
+
+            calculateButton.addEventListener("click", function () {
+                const expression = expressionInput.value;
+
+                try {
+                    const derivative = math.derivative(expression, 'x').toString();
+                    resultElement.textContent = derivative;
+                } catch (error) {
+                    resultElement.textContent = "Invalid expression";
+                }
+            });
+        });
+    </script>
 </body>
 </html>
