@@ -10,27 +10,36 @@
     <p>Enter a mathematical expression and click "Calculate" to find its derivative.</p>
 
     <input type="text" id="expression" placeholder="Enter a mathematical expression">
-    <button id="calculateButton">Calculate</button>
 
-    <p>Derivative: <span id="result"></span></p>
+        <button id="calculateButton">Calculate</button>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const expressionInput = document.getElementById("expression");
-            const resultElement = document.getElementById("result");
-            const calculateButton = document.getElementById("calculateButton");
+        <p>Derivative: <span id="result"></span></p>
 
-            calculateButton.addEventListener("click", function () {
-                const expression = expressionInput.value;
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const expressionInput = document.getElementById("expression");
+                const resultElement = document.getElementById("result");
+                const calculateButton = document.getElementById("calculateButton");
 
-                try {
-                    const derivative = math.derivative(expression, 'x').toString();
-                    resultElement.textContent = derivative;
-                } catch (error) {
-                    resultElement.textContent = "Invalid expression";
-                }
+                const calculateDerivative = function () {
+                    const expression = expressionInput.value;
+
+                    try {
+                        const derivative = math.derivative(expression, 'x').toString();
+                        resultElement.textContent = derivative;
+                    } catch (error) {
+                        resultElement.textContent = "Invalid expression";
+                    }
+                };
+
+                calculateButton.addEventListener("click", calculateDerivative);
+
+                expressionInput.addEventListener("keyup", function(event) {
+                    if (event.key === "Enter") {
+                        calculateDerivative();
+                    }
+                });
             });
-        });
-    </script>
-</body>
-</html>
+        </script>
+    </body>
+    </html>
